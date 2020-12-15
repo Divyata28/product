@@ -1,0 +1,80 @@
+
+
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport"
+         content="width=device-width, user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+   <title>Divyata</title>
+<Body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtCCgW2yBM-tvsga-OLdWWaA7LK_3KlQAofw&usqp=CAU.jpg"> 
+</head>
+<style>
+tr {
+    text-align: center;
+}
+a {
+    color: black;
+}
+th {
+    color:black;
+    font: bolder;
+    text-align: center;
+}
+div.footer {
+    display: inline-block;
+    margin-left: 150px;
+}
+.table {
+    margin-top: 50px;
+}
+
+body{
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+</style>
+
+</style>
+<body>
+
+    <h2 style="color: purple;"> <center>Welcome to the Grocery!!</center></h2>
+          <table class="table table-secondary">
+            <tr>
+           <th> <h3>Products Name</h3></th>
+           <th><h3><center>Price</center></h3></th>
+           <th> <h3>Description</h3></th>
+           <th><h3><center>Summary</center></h3></th>
+           <th><h3>Count : {{count}}</h3></th>
+        </tr>
+           {% for product in products %}
+            <tr class="table-secondary table-hover">
+               <td class="striker"> <a href="{%url 'update_product' product.id %}">{{product.title}}</a> </td>
+               <td class="striker"><center> <a href="{%url 'update_product' product.id %}">{{product.price}}</a></center> </td>
+               <td class="striker"> <a href="{%url 'update_product' product.id %}">{{product.description}}</a></td>
+               <td class="striker"><center> <a href="{%url 'update_product' product.id %}">{{product.summary}}</a></center> </td>
+               <td><center><a href="{%url 'delete_product' product.id %}"><button class="btn btn-danger">Delete</button></a></center></td>
+            
+          </tr>
+          {% endfor %}
+        </table>
+        <br>
+        <br>
+    <div class="footer">
+        <a href="{%url 'create_products'%}"><button class="btn btn-primary">New product</button></a>
+    </div>
+    <div class="footer">
+        <form method="POST" action="/view">
+            {% csrf_token %}
+            <input type="text" name="sb" placeholder="Enter to be searched">
+            <a href="{%url 'view_product' %}"><input class="btn btn-primary" type="submit" value="Search"></a>
+        </form>
+    </div>
+    <div class="footer">
+        <a href="/2"><button class="btn btn-primary"> Log Out </button></a>
+    </div>
+</body>
+</html>
